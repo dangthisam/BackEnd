@@ -15,6 +15,7 @@ const {
   postUser,
   putUser,
   deleteUser,
+  postFile,
 } = require("../controllers/apiControllers");
 
 // router.get("/creater-user", createrpostUser);
@@ -22,4 +23,6 @@ router.get("/User", getUsersAPI);
 router.post("/User", postUser);
 router.put("/User", putUser);
 router.delete("/User", deleteUser);
+router.post("/file", postFile);
+
 module.exports = router;

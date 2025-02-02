@@ -1,6 +1,6 @@
 const { name } = require("ejs");
 const User = require("../models/user");
-
+const { uploadFile, uploadMutipleFile } = require("../services/filesevices");
 const getUsersAPI = async (req, res) => {
   let result = await User.find({});
   return res.status(200).json({
@@ -54,9 +54,25 @@ const deleteUser = async (req, res) => {
     data: result,
   });
 };
+
+const postFile = async (req, res) => {
+  console.log("req.file ==", req.files);
+
+  if (!req.files || Object.keys(req.files).length === 0) {
+    res.status(400).send("No files were uploaded.");
+    return;
+  }
+
+  let result = await uploadMutipleFile(req.files.image);
+  console.log(result);
+
+  return res.send("tao la sam day nha");
+};
+
 module.exports = {
   getUsersAPI,
   postUser,
   putUser,
   deleteUser,
+  postFile,
 };
