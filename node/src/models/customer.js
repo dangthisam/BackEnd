@@ -9,5 +9,5 @@ const customerUser = new mongoose.Schema(
   },
   { timestamps: true }
 );
-const cusUser = mongoose.model("user", customerUser);
+const cusUser = mongoose.model("customer", customerUser);
 module.exports = cusUser;

@@ -17,12 +17,13 @@ const {
   deleteUser,
   postFile,
 } = require("../controllers/apiControllers");
-
+const { postCustomer } = require("../controllers/customer");
 // router.get("/creater-user", createrpostUser);
 router.get("/User", getUsersAPI);
 router.post("/User", postUser);
 router.put("/User", putUser);
 router.delete("/User", deleteUser);
 router.post("/file", postFile);
+router.post("/customer", postCustomer);
 
 module.exports = router;

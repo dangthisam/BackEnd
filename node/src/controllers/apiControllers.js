@@ -66,7 +66,7 @@ const postFile = async (req, res) => {
   let result = await uploadMutipleFile(req.files.image);
   console.log(result);
 
-  return res.send("tao la sam day nha");
+  return res.send("ok single");
 };
 
 module.exports = {
