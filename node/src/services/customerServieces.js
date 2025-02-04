@@ -15,4 +15,13 @@ const createrCustomerSerViece = async (customerData) => {
     return null;
   }
 };
-module.exports = { createrCustomerSerViece };
+const createArrCuss = async (arr) => {
+  try {
+    let result = await Customer.insertMany(arr);
+    return result;
+  } catch (error) {
+    console.log("err", error);
+    return null;
+  }
+};
+module.exports = { createrCustomerSerViece, createArrCuss };

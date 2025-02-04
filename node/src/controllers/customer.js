@@ -1,5 +1,8 @@
 const { uploadMutipleFile } = require("../services/filesevices");
-const { createrCustomerSerViece } = require("../services/customerServieces");
+const {
+  createrCustomerSerViece,
+  createArrCuss,
+} = require("../services/customerServieces");
 const postCustomer = async (req, res) => {
   let { name, phone, address, image, description } = req.body;
   let imgUrl = "";
@@ -35,4 +38,12 @@ const postCustomer = async (req, res) => {
     data: user,
   });
 };
-module.exports = { postCustomer };
+
+const createArrCus = async (req, res) => {
+  let customer = await createArrCuss(req.body.customer);
+  return res.status(200).json({
+    EC: 0,
+    data: customer,
+  });
+};
+module.exports = { postCustomer, createArrCus };
