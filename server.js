@@ -38,29 +38,32 @@ app.use("", webRouter);
   //using mongodb drive
 
   // Connection URL
-  try {
-    //console.log("....", process.env.BD_NAME_CONNECT);
-    const url = "mongodb://root:123456@localhost:27018/?authSource=admin";
-    const client = new MongoClient(url);
+  // try {
+  //   //console.log("....", process.env.BD_NAME_CONNECT);
+  //   const url = "mongodb://root:123456@localhost:27018/?authSource=admin";
+  //   const client = new MongoClient(url);
 
-    // Database Name
-    const dbName = "nguyenvansam";
-    // Use connect method to connect to the server
-    await client.connect();
-    console.log("Connected successfully to server");
-    const db = client.db(dbName);
-    const collection = db.collection("customers");
-    // collection.insertOne({ name: "dangthuy" });
-    // collection.insertOne({
-    //   name: "vansam",
-    //   address: "hanoi",
-    //   email: "vansam@gmail.com",
-    // });
-    console.log(">>>find", await collection.findOne({ name: "vansam" }));
-    app.listen(port, () => {
-      console.log(` app listening on port ${port}`);
-    });
-  } catch (error) {
-    console.log("error>>>>", error);
-  }
+  //   // Database Name
+  //   const dbName = "nguyenvansam";
+  //   // Use connect method to connect to the server
+  //   await client.connect();
+  //   console.log("Connected successfully to server");
+  //   const db = client.db(dbName);
+  //   const collection = db.collection("customers");
+  //   // collection.insertOne({ name: "dangthuy" });
+  //   // collection.insertOne({
+  //   //   name: "vansam",
+  //   //   address: "hanoi",
+  //   //   email: "vansam@gmail.com",
+  //   // });
+  //   console.log(">>>find", await collection.findOne({ name: "vansam" }));
+  //   app.listen(port, () => {
+  //     console.log(` app listening on port ${port}`);
+  //   });
+  // } catch (error) {
+  //   console.log("error>>>>", error);
+  // }
+  app.listen(port, () => {
+    console.log(` app listening on port ${port}`);
+  });
 })();

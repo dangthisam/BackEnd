@@ -10,7 +10,6 @@ const customerUse = new mongoose.Schema({
 });
 
 const User = new mongoose.Schema({
-  code: String,
   name: String,
   address: String,
 });
@@ -25,7 +24,7 @@ const projectSchema = new mongoose.Schema(
     endDate: String,
     description: String,
     customerInfor: customerUse,
-    //customerInfor: {type:mongoose.Schema.Types.ObjectId, ref:"User"},
+    // customerInfor: {type:mongoose.Schema.Types.ObjectId, ref:"user"},
     userInfor: [{ type: mongoose.Schema.Types.ObjectId, ref: "user" }],
     leader: User,
     tasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "Task" }],
