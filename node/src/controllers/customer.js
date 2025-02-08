@@ -2,6 +2,10 @@ const { uploadMutipleFile } = require("../services/filesevices");
 const {
   createrCustomerSerViece,
   createArrCuss,
+  getCustomers,
+  updateCus,
+  deleteCus,
+  deleleManyCuss,
 } = require("../services/customerServieces");
 const postCustomer = async (req, res) => {
   let { name, phone, address, image, description } = req.body;
@@ -46,4 +50,53 @@ const createArrCus = async (req, res) => {
     data: customer,
   });
 };
-module.exports = { postCustomer, createArrCus };
+
+const getCustomer = async (req, res) => {
+  console.log(req.query);
+  let limit = req.query.limit;
+  let page = req.query.page;
+  let name = req.query.name;
+  let result = null;
+  if (limit && page) {
+    result = await getCustomers(limit, page, name, req.query);
+  } else result = await getCustomers();
+  return res.status(200).json({
+    EC: 0,
+    data: result,
+  });
+};
+
+const updateCuss = async (req, res) => {
+  let { id, name, phone, address } = req.body;
+  let result = await updateCus(id, name, phone, address);
+  return res.status(200).json({
+    EC: 0,
+    data: result,
+  });
+};
+
+const deleteCuss = async (req, res) => {
+  let { id } = req.body;
+  let result = await deleteCus(id);
+  return res.status(200).json({
+    EC: 0,
+    data: result,
+  });
+};
+const deleteManyCus = async (req, res) => {
+  let id = req.body.customerID;
+  console.log(id);
+  let result = await deleleManyCuss(id);
+  return res.status(200).json({
+    EC: 0,
+    data: result,
+  });
+};
+module.exports = {
+  postCustomer,
+  createArrCus,
+  getCustomer,
+  updateCuss,
+  deleteCuss,
+  deleteManyCus,
+};
