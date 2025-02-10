@@ -25,6 +25,7 @@ const taskSchema = new mongoose.Schema(
     status: String,
     startDate: String,
     endDate: String,
+    description: String,
     userInfo: User,
     projectInfor: projectSchema,
   },
@@ -32,6 +33,6 @@ const taskSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
+taskSchema.plugin(mongoose_delete, { overrideMethods: "all" });
 const Task = new mongoose.model("Task", taskSchema);
 module.exports = Task;

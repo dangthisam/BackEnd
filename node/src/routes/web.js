@@ -26,7 +26,14 @@ const {
   deleteManyCus,
 } = require("../controllers/customer");
 const project = require("../models/project");
-const { postCrateProject } = require("../controllers/postCreateProject");
+const {
+  postCrateProject,
+  getAllProject,
+  createTask,
+  getTask,
+  updateTask,
+  deleteTask,
+} = require("../controllers/postCreateProject");
 // router.get("/creater-user", createrpostUser);
 router.get("/User", getUsersAPI);
 router.post("/User", postUser);
@@ -40,5 +47,9 @@ router.put("/updateCustomer", updateCuss);
 router.delete("/deleteCustomer", deleteCuss);
 router.delete("/deleteArrCus", deleteManyCus);
 router.post("/project", postCrateProject);
-
+router.get("/project", getAllProject);
+router.post("/task", createTask);
+router.get("/task", getTask);
+router.put("/task", updateTask);
+router.delete("/task", deleteTask);
 module.exports = router;
