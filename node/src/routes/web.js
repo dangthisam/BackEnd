@@ -35,6 +35,9 @@ const {
   deleteTask,
 } = require("../controllers/postCreateProject");
 // router.get("/creater-user", createrpostUser);
+router.get("/", (req, res) => {
+  res.send("ok");
+});
 router.get("/User", getUsersAPI);
 router.post("/User", postUser);
 router.put("/User", putUser);
