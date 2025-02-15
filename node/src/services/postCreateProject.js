@@ -41,6 +41,23 @@ const createProject = async (data) => {
     console.log(myProject);
     return newProject;
   }
+
+  if (data.type === "ADD_TASK") {
+    console.log(data);
+
+    let myProject = await Project.findById(data.projectID).exec();
+    // myProject.userInfor.push(data.userArr);
+
+    for (let i = 0; i < data.Task.length; i++) {
+      // check xem da co data chua
+      myProject.tasks.push(data.Task[i]);
+    }
+
+    //console.log(">>>>>>", myProject.userInfor);
+    let newProject = await myProject.save();
+    console.log(myProject);
+    return newProject;
+  }
 };
 
 // create data for Task
@@ -65,12 +82,12 @@ const getDataTask = async (queryString) => {
     // console.log(limit);
 
     let offset = (page - 1) * limit;
-    task = await Task.find(filter)
+    task = await Task.findById("67a775fb6aee2cc291998bcd")
       .skip(offset)
       .limit(limit)
-      .populate(population)
+      .populate("tasks")
       .exec();
-
+    console.log("lllllllll", task);
     return task;
   } catch (error) {
     console.log(">>>>>error", error);

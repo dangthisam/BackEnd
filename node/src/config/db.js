@@ -12,17 +12,19 @@ const mongoose = require("mongoose");
 
 const connection = async () => {
   try {
-    // Kết nối tới MongoDB và chờ hoàn thành
-    await mongoose.connect("mongodb://root:123456@localhost:27018", {
+    console.log("dkhg", process.env.DB_HOST);
+    await mongoose.connect(process.env.DB_HOST, {
       user: process.env.DB_USER,
       pass: process.env.DB_PASSWORD,
-      dbName: "nguyenvansam",
+      dbName: process.env.DB_NAME, // Chỉ định tên database
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
-    console.log("Kết nối thành công!");
+
+    console.log("✅ Kết nối MongoDB Atlas thành công!");
   } catch (err) {
-    // Xử lý lỗi nếu xảy ra
-    console.error("Kết nối thất bại:", err);
-    throw err; // Ném lỗi để bên ngoài xử lý nếu cần
+    console.error("❌ Kết nối MongoDB Atlas thất bại:", err.message);
+    process.exit(1);
   }
 };
 

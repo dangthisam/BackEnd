@@ -7,9 +7,28 @@ const {
   deleteCus,
   deleleManyCuss,
 } = require("../services/customerServieces");
+
+// liabrary validate data
+const Joi = require("joi");
 const postCustomer = async (req, res) => {
-  let { name, phone, address, image, description } = req.body;
-  let imgUrl = "";
+  let { name, phone, address, description } = req.body;
+
+  const schema = Joi.object({
+    username: Joi.string().alphanum().min(3).max(30).required(),
+    phone: Joi.String().pattern(new RegExp("^[0-9]{8,11}$")),
+
+    address: Joi.string().required(),
+
+    //repeat_password: Joi.ref("password"),
+
+    //access_token: [Joi.string(), Joi.number()],
+
+    // birth_year: Joi.number().integer().min(1900).max(2013),
+
+    description: Joi.string(),
+  });
+
+  schema.validate(req.body);
   console.log(">>>name", name, description);
   // name: String,
   // phone: String,
